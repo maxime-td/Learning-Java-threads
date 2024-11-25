@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Stock {
     int stockMax = 100;
-    int stockMin = 0;
     ArrayList<PereNoel> stock = new ArrayList<>();
 
     public Stock() {}

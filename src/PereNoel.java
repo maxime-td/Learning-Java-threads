@@ -1,5 +1,5 @@
 public class PereNoel {
-    int numeroDeSerie;
+    public int numeroDeSerie;
     static int nbPereNoel = 0;
 
     PereNoel() {
