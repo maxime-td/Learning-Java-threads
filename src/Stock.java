@@ -6,7 +6,7 @@ public class Stock {
 
     public Stock() {}
 
-    public int ajouter(PereNoel pereNoel) {
+    public synchronized int ajouter(PereNoel pereNoel) {
         int codeRetour = 1;
 
         if (stock.size() < stockMax) {
@@ -17,7 +17,7 @@ public class Stock {
         return codeRetour;
     }
 
-    public int retirer(int nombre) {
+    public synchronized int retirer(int nombre) {
         int codeRetour = 1;
 
         if (stock.size() >= nombre) {
