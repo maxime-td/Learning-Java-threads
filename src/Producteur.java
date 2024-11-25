@@ -1,9 +1,14 @@
 public class Producteur extends Thread {
     int stockPlein = 0;
+    Stock stockClasse;
 
-    public Producteur() {};
+    public Producteur(Stock stock) {
+        this.stockClasse = stock;
+    }
 
-    public void run(Stock stockClasse) {
+    ;
+
+    public void run() {
         while (true) {
             if (stockPlein == 0) {
                 try {
@@ -22,8 +27,14 @@ public class Producteur extends Thread {
                     throw new RuntimeException(e);
                 }
             } else {
-                Thread.wait();
-                stockPlein = 0;
+                try {
+                    synchronized (stockClasse) {
+                        stockClasse.wait();
+                        stockPlein = 0;
+                    }
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }

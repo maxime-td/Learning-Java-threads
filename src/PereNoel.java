@@ -4,6 +4,6 @@ public class PereNoel {
 
     PereNoel() {
         nbPereNoel++;
-        numeroDeSerie = nbPereNoel;
+        this.numeroDeSerie = nbPereNoel;
     }
 }
