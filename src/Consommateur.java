@@ -23,7 +23,7 @@ public class Consommateur extends Thread {
             if (stockVide == 0) {
                 try {
                     tempsAleatoire = (rand.nextInt(5) + 1) * 1000; // Attente aléatoire entre 1 et 5 secondes
-                    Thread.sleep(tempsAleatoire); // Attend 1 seconde
+                    Thread.sleep(tempsAleatoire); // Attente
                     stockVide = stockClasse.retirer(nombreAleatoire); // Retire x pères noel
 
                     if (stockVide == 0) {
