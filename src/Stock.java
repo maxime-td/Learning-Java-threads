@@ -25,6 +25,7 @@ public class Stock {
             for (int i = 0; i < nombre; i++) {
                 System.out.println("Père Noël n°" + stock.get(stock.size() - 1).numeroDeSerie + " acheté.");
                 stock.remove(stock.size() - 1);
+                System.out.println("Nombre de pères Noël dans le stock : " + stock.size());
             }
             notify();
             codeRetour = 0;

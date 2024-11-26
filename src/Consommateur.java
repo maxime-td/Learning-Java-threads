@@ -27,6 +27,7 @@ public class Consommateur extends Thread {
 
                     if (stockVide == 0) {
                         System.out.println(nombreAleatoire + " père(s) Noël retiré(s) du stock.");
+                        System.out.println("Nombre de pères Noël dans le stock : " + stockClasse.stock.size());
                     } else {
                         System.out.println("Consommateur mis en attente...");
                     }
