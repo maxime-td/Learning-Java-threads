@@ -15,7 +15,7 @@ public class Stock {
 
         if (stock.size() < stockMax) { // Si stock pas plein
             stock.add(pereNoel); // Ajoute le pn
-            notify(); // Notifie les consommateurs
+            notifyAll(); // Notifie les consommateurs
             codeRetour = 0; // 0 = stock pas plein
         }
 
@@ -34,7 +34,7 @@ public class Stock {
 
                 System.out.println("Nombre de pères Noël dans le stock : " + stock.size());
             }
-            notify(); // Notifie les producteurs
+            notifyAll(); // Notifie les producteurs
             codeRetour = 0; // 0 = stock pas vide
         }
 
