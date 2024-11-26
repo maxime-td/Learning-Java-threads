@@ -6,14 +6,14 @@ public class Consommateur extends Thread {
     int nombreAleatoire;
 
     int stockVide = 0; // 0 = pas vide, 1 = vide
-    Stock stockClasse;
+    final Stock stockClasse;
 
 
     public Consommateur(Stock stock) {
         this.stockClasse = stock;
     }
 
-
+    @Override
     public void run() {
         while (true) {
 
@@ -26,9 +26,9 @@ public class Consommateur extends Thread {
                     stockVide = stockClasse.retirer(nombreAleatoire); // Retire x pères noel
 
                     if (stockVide == 0) {
-                        System.out.println(nombreAleatoire + " père(s) Noël retiré(s) du stock.\n");
+                        System.out.println(nombreAleatoire + " père(s) Noël retiré(s) du stock.");
                     } else {
-                        System.out.println("Consommateur mis en attente...\n");
+                        System.out.println("Consommateur mis en attente...");
                     }
 
                 } catch (InterruptedException e) {

@@ -1,12 +1,13 @@
 public class Producteur extends Thread {
 
     int stockPlein = 0; // 0 = pas plein, 1 = plein
-    Stock stockClasse;
+    final Stock stockClasse;
 
     public Producteur(Stock stock) {
         this.stockClasse = stock;
     }
 
+    @Override
     public void run() {
         while (true) {
             if (stockPlein == 0) {
@@ -17,9 +18,9 @@ public class Producteur extends Thread {
                     stockPlein = stockClasse.ajouter(pereNoel); // L'ajoute au stock
 
                     if (stockPlein == 0) {
-                        System.out.println("Père Noël n°" + pereNoel.numeroDeSerie + " ajouté au stock.\n");
+                        System.out.println("Père Noël n°" + pereNoel.numeroDeSerie + " ajouté au stock.");
                     } else {
-                        System.out.println("Producteur mis en attente...\n");
+                        System.out.println("Producteur mis en attente...");
                     }
 
                 } catch (InterruptedException e) {
