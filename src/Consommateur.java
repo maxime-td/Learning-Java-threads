@@ -4,6 +4,7 @@ public class Consommateur extends Thread {
 
     Random rand = new Random();
     int nombreAleatoire;
+    int tempsAleatoire;
 
     int stockVide = 0; // 0 = pas vide, 1 = vide
     final Stock stockClasse;
@@ -21,7 +22,7 @@ public class Consommateur extends Thread {
 
             if (stockVide == 0) {
                 try {
-
+                    tempsAleatoire = rand.nextInt(5) + 1; // Attente aléatoire entre 1 et 5 secondes
                     Thread.sleep(1000); // Attend 1 seconde
                     stockVide = stockClasse.retirer(nombreAleatoire); // Retire x pères noel
 
