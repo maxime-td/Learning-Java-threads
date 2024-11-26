@@ -1,7 +1,12 @@
+import java.util.Random;
+
 public class Producteur extends Thread {
 
     int stockPlein = 0; // 0 = pas plein, 1 = plein
     final Stock stockClasse;
+
+    Random rand = new Random();
+    int tempsAleatoire;
 
     public Producteur(Stock stock) {
         this.stockClasse = stock;
@@ -12,8 +17,8 @@ public class Producteur extends Thread {
         while (true) {
             if (stockPlein == 0) {
                 try {
-
-                    Thread.sleep(2000); // Attend 2 secondes
+                    tempsAleatoire = rand.nextInt(5) + 1; // Attente aléatoire entre 1 et 5 secondes
+                    Thread.sleep(tempsAleatoire); // Attend 2 secondes
                     PereNoel pereNoel = new PereNoel(); // Créé un père noel
                     stockPlein = stockClasse.ajouter(pereNoel); // L'ajoute au stock
 
