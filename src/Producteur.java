@@ -1,12 +1,11 @@
 public class Producteur extends Thread {
-    int stockPlein = 0;
+
+    int stockPlein = 0; // 0 = pas plein, 1 = plein
     Stock stockClasse;
 
     public Producteur(Stock stock) {
         this.stockClasse = stock;
     }
-
-    ;
 
     public void run() {
         while (true) {

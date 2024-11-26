@@ -11,6 +11,7 @@ public class Stock {
 
         if (stock.size() < stockMax) {
             stock.add(pereNoel);
+            notify();
             codeRetour = 0;
         }
 
@@ -22,8 +23,10 @@ public class Stock {
 
         if (stock.size() >= nombre) {
             for (int i = 0; i < nombre; i++) {
+                System.out.println("Père Noël n°" + stock.get(stock.size() - 1).numeroDeSerie + " acheté.");
                 stock.remove(stock.size() - 1);
             }
+            notify();
             codeRetour = 0;
         }
 
