@@ -17,7 +17,7 @@ public class Producteur extends Thread {
         while (true) {
             if (stockPlein == 0) {
                 try {
-                    tempsAleatoire = rand.nextInt(5) + 1; // Attente aléatoire entre 1 et 5 secondes
+                    tempsAleatoire = (rand.nextInt(5) + 1) * 1000; // Attente aléatoire entre 1 et 5 secondes
                     Thread.sleep(tempsAleatoire); // Attend 2 secondes
                     PereNoel pereNoel = new PereNoel(); // Créé un père noel
                     stockPlein = stockClasse.ajouter(pereNoel); // L'ajoute au stock
