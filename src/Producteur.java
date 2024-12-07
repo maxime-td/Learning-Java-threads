@@ -2,37 +2,36 @@ import java.util.Random;
 
 public class Producteur extends Thread {
 
-    // Gestion des pères Noël
-    int stockPlein = 0; // 0 = pas plein, 1 = plein
-    final Stock stockClasse;
+    // Santas management
+    int fullStock = 0; // 0 = not full, 1 = full
+    final Stock stockClass;
 
-    // Gestion de l'aléatoire
+    // Random management
     Random rand = new Random();
-    int tempsAleatoire;
+    int randomTime;
 
 
     public Producteur(Stock stock) {
-        this.stockClasse = stock;
+        this.stockClass = stock;
     }
 
     @Override
     public void run() {
         while (true) {
-            if (stockPlein == 0) { // Si tock pas plein
+            if (fullStock == 0) { // If stock is not full
 
                 try {
-                    tempsAleatoire = (rand.nextInt(5) + 1) * 1000; // Attente aléatoire entre 1 et 5 secondes
-                    Thread.sleep(tempsAleatoire); // Attente
+                    randomTime = (rand.nextInt(5) + 1) * 1000; // Random waiting between 1 and 5 seconds
+                    Thread.sleep(randomTime); // Waiting
 
-                    PereNoel pereNoel = new PereNoel(); // Créé un père noel
-                    stockPlein = stockClasse.ajouter(pereNoel); // L'ajoute au stock
+                    PereNoel pereNoel = new PereNoel(); // Creates the santa
+                    fullStock = stockClass.ajouter(pereNoel); // Adds it to the stock
 
-                    if (stockPlein == 0) { // Stock pas plein => ajoute le pn
-                        System.out.println("Père Noël n°" + pereNoel.serialNumber + " ajouté au stock.");
-                        System.out.println("Nombre de pères Noël dans le stock : " + stockClasse.stock.size());
+                    if (fullStock == 0) { // If stock is not full => adds the santa
+                        System.out.println("Santa n°" + pereNoel.serialNumber + " added to stock.");
 
-                    } else { // Stock plein => producteur en attente
-                        System.out.println("Producteur mis en attente...");
+                    } else { // Is stock is full => producer waiting
+                        System.out.println("Producer waiting...");
                     }
 
                 } catch (InterruptedException e) {
@@ -41,9 +40,9 @@ public class Producteur extends Thread {
 
             } else {
                 try {
-                    synchronized (stockClasse) { // Fin de l'attente
-                        stockClasse.wait();
-                        stockPlein = 0;
+                    synchronized (stockClass) { // End of waiting
+                        stockClass.wait();
+                        fullStock = 0;
                     }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
