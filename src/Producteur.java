@@ -1,5 +1,6 @@
 import java.util.Random;
 
+// Producer class
 public class Producteur extends Thread {
 
     // Santas management
@@ -25,7 +26,7 @@ public class Producteur extends Thread {
                     Thread.sleep(randomTime); // Waiting
 
                     PereNoel pereNoel = new PereNoel(); // Creates the santa
-                    fullStock = stockClass.ajouter(pereNoel); // Adds it to the stock
+                    fullStock = stockClass.addSantaToStock(pereNoel); // Adds it to the stock
 
                     if (fullStock == 0) { // If stock is not full => adds the santa
                         System.out.println("Santa n°" + pereNoel.serialNumber + " added to stock.");

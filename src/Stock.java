@@ -1,43 +1,42 @@
 import java.util.ArrayList;
 
+// Stock class
 public class Stock {
 
-    // Gestion du stock
-    int stockMax = 100;
+    // Stock management
+    int stockMax = 100; // Maximum possible of santas in the stock
     ArrayList<PereNoel> stock = new ArrayList<>();
 
 
     public Stock() {}
 
-    // Méthode pour ajouter un pn au stock
-    public synchronized int ajouter(PereNoel pereNoel) {
-        int codeRetour = 1; // 1 = stock plein
+    // Method to add a santa to the stock
+    public synchronized int addSantaToStock(PereNoel pereNoel) {
+        int returnCode = 1; // 1 = stock is full
 
-        if (stock.size() < stockMax) { // Si stock pas plein
-            stock.add(pereNoel); // Ajoute le pn
-            notifyAll(); // Notifie les consommateurs
-            codeRetour = 0; // 0 = stock pas plein
+        if (stock.size() < stockMax) { // If stock is not full
+            stock.add(pereNoel); // Adds the santa
+            notifyAll(); // Notifies the consumers
+            returnCode = 0; // 0 = stock is not full
         }
 
-        return codeRetour;
+        return returnCode;
     }
 
 
-    // Méthode pour retirer X pn du stock
-    public synchronized int retirer(int nombre) {
-        int codeRetour = 1; // 1 = stock vide
+    // Method to consume X santas from the stock
+    public synchronized int consumeSantaFromStock(int nombre) {
+        int returnCode = 1; // 1 = stock is empty
 
-        if (stock.size() >= nombre) { // Si stock pas vide
-            for (int i = 0; i < nombre; i++) { // Retire X pn
-                System.out.println("Père Noël n°" + stock.get(stock.size() - 1).numeroDeSerie + " acheté.");
-                stock.remove(stock.size() - 1);
-
-                System.out.println("Nombre de pères Noël dans le stock : " + stock.size());
+        if (stock.size() >= nombre) { // If stock is not empty
+            for (int i = 0; i < nombre; i++) { // Consumes X santas
+                System.out.println("Santa n°" + stock.get(stock.size() - 1).serialNumber + " consumed.");
+                stock.remove(stock.size() - 1); // Removes the santa
             }
-            notifyAll(); // Notifie les producteurs
-            codeRetour = 0; // 0 = stock pas vide
+            notifyAll(); // Notifies the producers
+            returnCode = 0; // 0 = stock is not empty
         }
 
-        return codeRetour;
+        return returnCode;
     }
 }

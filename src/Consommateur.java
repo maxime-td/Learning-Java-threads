@@ -29,7 +29,7 @@ public class Consommateur extends Thread {
                     randomTime = (rand.nextInt(5) + 1) * 1000; // Random waiting between 1 and 5 seconds.
                     Thread.sleep(randomTime); // Waiting
 
-                    emptyStock = stockClass.retirer(randomNumber); // Consumes X santas
+                    emptyStock = stockClass.consumeSantaFromStock(randomNumber); // Consumes X santas
 
                     if (emptyStock == 0) { // Si stock pas vide => affichage
                         System.out.println(randomNumber + " santa(s) consumed.");

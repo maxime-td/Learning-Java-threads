@@ -1,3 +1,4 @@
+// Santa class
 public class PereNoel {
     public int serialNumber;
     static int numberOfSantas = 0;
