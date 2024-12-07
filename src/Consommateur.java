@@ -19,7 +19,7 @@ public class Consommateur extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (Main.exitNumber != 0) {
 
             randomNumber = rand.nextInt(5) + 1; // Random number between 1 and 5 for the number of santas consumed
 

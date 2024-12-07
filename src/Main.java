@@ -1,18 +1,13 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 
 public class Main {
 
-    static int exitNumber = 1;
+    public static int exitNumber = 1;
     static Scanner scanner;
 
-    static int ProducersNumber; // Number of producers
-    private static List<Producteur> producers = new ArrayList<>(); // List of producers
-
-    static int ConsumersNumber; // Number of consumers
-    private static List<Consommateur> consumers = new ArrayList<>(); // List of consumers
+    static int producersNumber; // Number of producers
+    static int consumersNumber; // Number of consumers
 
 
     public Main() {}
@@ -35,48 +30,43 @@ public class Main {
         Stock stock = new Stock(); // Stock creation
 
         // Producers creation
-        for (int i = 0; i < ProducersNumber; i++) {
+        for (int i = 0; i < producersNumber; i++) {
             Producteur producteur = new Producteur(stock); // Creation of producer i
             producteur.start(); // Start of producer i
-            producers.add(producteur);
         }
-        System.out.println(ProducersNumber + " producers created.");
+        System.out.println(producersNumber + " producers created.");
 
 
         // Consumers creation
-        for (int j = 0; j < ConsumersNumber; j++) {
-
+        for (int j = 0; j < consumersNumber; j++) {
             Consommateur consommateur = new Consommateur(stock); // Creation of consumer j
             consommateur.start(); // Start of consumer j
-            consumers.add(consommateur);
         }
-        System.out.println(ConsumersNumber + " consumers created.");
+        System.out.println(consumersNumber + " consumers created.");
 
 
         System.out.println("Enter 0 to exit.");
-
+        exitNumber = Integer.parseInt(scanner.nextLine());
+        System.out.println("Stopping threads...");
     }
 
 
 
     public static void main(String[] args) {
 
-        // Initialisations
+        // Scanner initialisation
         scanner = new Scanner(System.in);
-
-        Stock stock = new Stock(); // Stock creation
 
 
         try {
             // Parse producers number
             printProducers();
-            ProducersNumber = Integer.parseInt(scanner.nextLine());
-            System.out.println(ProducersNumber);
+            producersNumber = Integer.parseInt(scanner.nextLine());
 
-            if (ProducersNumber < 0) { // Invalid number
+            if (producersNumber < 0) { // Invalid number
                 System.out.println("Invalid number.");
 
-            } else if (ProducersNumber == 0) { // Exit number
+            } else if (producersNumber == 0) { // Exit number
                 System.out.println("Good bye!");
 
             } else { // Valid number
@@ -84,22 +74,20 @@ public class Main {
                 try {
                     // Parse consumers number
                     printConsumers();
-                    ConsumersNumber = Integer.parseInt(scanner.nextLine());
-                    System.out.println(ConsumersNumber);
+                    consumersNumber = Integer.parseInt(scanner.nextLine());
 
-                    if (ConsumersNumber < 0) { // Invalid number
+                    if (consumersNumber < 0) { // Invalid number
                         System.out.println("Invalid number.");
 
-                    } else if (ConsumersNumber == 0) { // Exit number
+                    } else if (consumersNumber == 0) { // Exit number
                         System.out.println("Good bye!");
 
                     } else { // Valid number
 
 
                         // Run program
-                        while (exitNumber != 0) {
-                            run();
-                        }
+                        run();
+
                     }
 
                 } catch (NumberFormatException e) {

@@ -18,7 +18,7 @@ public class Producteur extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (Main.exitNumber != 0) {
             if (fullStock == 0) { // If stock is not full
 
                 try {
