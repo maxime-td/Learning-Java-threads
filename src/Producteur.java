@@ -28,7 +28,7 @@ public class Producteur extends Thread {
                     stockPlein = stockClasse.ajouter(pereNoel); // L'ajoute au stock
 
                     if (stockPlein == 0) { // Stock pas plein => ajoute le pn
-                        System.out.println("Père Noël n°" + pereNoel.numeroDeSerie + " ajouté au stock.");
+                        System.out.println("Père Noël n°" + pereNoel.serialNumber + " ajouté au stock.");
                         System.out.println("Nombre de pères Noël dans le stock : " + stockClasse.stock.size());
 
                     } else { // Stock plein => producteur en attente

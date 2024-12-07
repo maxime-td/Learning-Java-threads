@@ -1,9 +1,9 @@
 public class PereNoel {
-    public int numeroDeSerie;
-    static int nbPereNoel = 0;
+    public int serialNumber;
+    static int numberOfSantas = 0;
 
     PereNoel() {
-        nbPereNoel++;
-        this.numeroDeSerie = nbPereNoel;
+        numberOfSantas++;
+        this.serialNumber = numberOfSantas;
     }
 }
