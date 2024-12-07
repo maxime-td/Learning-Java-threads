@@ -17,4 +17,5 @@ The producers create 1 Santa Claus every 2 seconds, and the consumers process be
 ## Usage
 
 To launch the application, run the Main class of the project.
-To manage the number of Producers and Consumers, modify the nbProducteurs and nbConsommateurs values in the Main class.
+The application will then ask you how many producers and consumers you want.
+To exit the application, enter "0".
