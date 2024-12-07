@@ -1,41 +1,41 @@
 import java.util.Random;
 
+// Consumer class
 public class Consommateur extends Thread {
 
-    // Gestion de l'aléatoire
+    // Random management
     Random rand = new Random();
-    int nombreAleatoire;
-    int tempsAleatoire;
+    int randomNumber; // Random number of santas consumed
+    int randomTime; // Random time between consummations
 
-    // Gestion du stock de pn
-    int stockVide = 0; // 0 = pas vide, 1 = vide
-    final Stock stockClasse;
+    // Stock management
+    int emptyStock = 0; // 0 = not empty, 1 = empty
+    final Stock stockClass; // Stock pointer
 
 
     public Consommateur(Stock stock) {
-        this.stockClasse = stock;
+        this.stockClass = stock; // Connect to the stock
     }
 
     @Override
     public void run() {
         while (true) {
 
-            nombreAleatoire = rand.nextInt(5) + 1; // Nombre aléatoire entre 1 et 5 pour le nombre de pn consommés
+            randomNumber = rand.nextInt(5) + 1; // Random number between 1 and 5 for the number of santas consumed
 
-            if (stockVide == 0) { // Si stock pas vide
+            if (emptyStock == 0) { // If stock is not empty
 
                 try {
-                    tempsAleatoire = (rand.nextInt(5) + 1) * 1000; // Attente aléatoire entre 1 et 5 secondes
-                    Thread.sleep(tempsAleatoire); // Attente
+                    randomTime = (rand.nextInt(5) + 1) * 1000; // Random waiting between 1 and 5 seconds.
+                    Thread.sleep(randomTime); // Waiting
 
-                    stockVide = stockClasse.retirer(nombreAleatoire); // Retire x pères noel
+                    emptyStock = stockClass.retirer(randomNumber); // Consumes X santas
 
-                    if (stockVide == 0) { // Si stock pas vide => affichage
-                        System.out.println(nombreAleatoire + " père(s) Noël retiré(s) du stock.");
-                        System.out.println("Nombre de pères Noël dans le stock : " + stockClasse.stock.size());
+                    if (emptyStock == 0) { // Si stock pas vide => affichage
+                        System.out.println(randomNumber + " santa(s) consumed.");
 
-                    } else { // Si stock vide => attente
-                        System.out.println("Consommateur mis en attente...");
+                    } else { // If stock is empty => waiting
+                        System.out.println("Consumer waiting...");
                     }
 
                 } catch (InterruptedException e) {
@@ -44,9 +44,9 @@ public class Consommateur extends Thread {
 
             } else {
                 try {
-                    synchronized (stockClasse) { // Fin de l'attente
-                        stockClasse.wait();
-                        stockVide = 0;
+                    synchronized (stockClass) { // End of waiting
+                        stockClass.wait();
+                        emptyStock = 0;
                     }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
